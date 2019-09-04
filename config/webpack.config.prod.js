@@ -1,7 +1,7 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
-  mode: "production",
+  mode: 'production',
   entry: './lib/index.js',
   output: {
     filename: 'graphite.min.js',
@@ -9,5 +9,5 @@ module.exports = {
     library: 'graphite',
     libraryExport: 'default',
     libraryTarget: 'var'
-  },
-};
+  }
+}

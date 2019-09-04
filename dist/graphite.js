@@ -117,7 +117,7 @@ eval("throw new Error(\"Module build failed: Error: ENOENT: no such file or dire
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ \"./lib/data.js\");\n/* harmony import */ var _document__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./document */ \"./lib/document.js\");\n\n\n\nconst graphite = () => {\n  const data = Object(_data__WEBPACK_IMPORTED_MODULE_0__[\"data\"])()\n  const document = Object(_document__WEBPACK_IMPORTED_MODULE_1__[\"document\"])()\n  return {\n    get data() {\n      return data\n    },\n    get document() {\n      return document\n    }\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (graphite);\n\n//# sourceURL=webpack://graphite/./lib/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ \"./lib/data.js\");\n/* harmony import */ var _document__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./document */ \"./lib/document.js\");\n\n\n\nconst graphite = () => {\n  const data = Object(_data__WEBPACK_IMPORTED_MODULE_0__[\"data\"])()\n  const document = Object(_document__WEBPACK_IMPORTED_MODULE_1__[\"document\"])()\n  return {\n    get data() {\n      return data\n    },\n    get document() {\n      return document\n    }\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (graphite);\n\n\n//# sourceURL=webpack://graphite/./lib/index.js?");
 
 /***/ })
 
