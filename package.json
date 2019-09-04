@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx webpack --config ./config/webpack.config.prod.js",
     "start": "npx webpack-dev-server --config ./config/webpack.config.dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,12 +19,15 @@
   },
   "homepage": "https://github.com/bel0v/graphite#readme",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.5.0",
     "eslint": "^6.3.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.16.0",
     "eslint-plugin-node": "^9.2.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "jest": "^24.9.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
@@ -32,5 +35,14 @@
   "dependencies": {
     "file-saver": "^2.0.2",
     "vis-network": "^5.3.1"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "plugins": [
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      }
+    }
   }
 }
