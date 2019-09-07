@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npx webpack --config ./config/webpack.config.prod.js",
     "start": "npx webpack-dev-server --config ./config/webpack.config.dev.js",
-    "test": "jest"
+    "test": "jest",
+    "test:w": "jest --watch"
   },
   "repository": {
     "type": "git",
