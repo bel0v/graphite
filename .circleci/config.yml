@@ -4,6 +4,7 @@
       docker:
         - image: circleci/node:10.16
       steps:
+        - checkout
         - run:
             name: Install dependencies
             command: npm install
