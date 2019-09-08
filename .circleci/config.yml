@@ -5,4 +5,4 @@
       - checkout
       - run:
         name: Run tests
-        command: jest --ci
+        command: npm test
