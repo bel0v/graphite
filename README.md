@@ -1,4 +1,7 @@
 
+
+![build](https://img.shields.io/circleci/build/github/bel0v/graphite?style=flat)
+
 # Требования
 
 # Установка
