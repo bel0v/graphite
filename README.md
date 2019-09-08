@@ -66,6 +66,18 @@ var prefilledGraph = graphite({data: myGraphData})
 
 `edges`
 
+`addNodes`
+
+`updateNode`
+
+`removeNode`
+
+`addEdges`
+
+`updateEdge`
+
+`removeEdge`
+
 ## Document
 
 `doc`

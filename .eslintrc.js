@@ -19,6 +19,6 @@ module.exports = {
   },
   rules: {
     "quotes": ["error", "single"],
-    "space-before-function-paren": ["error", "never"]
+    "space-before-function-paren": ["error", "never"],
   }
 }
