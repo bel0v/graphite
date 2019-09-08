@@ -12,7 +12,7 @@
 ```html
 <script src="/path/to/script.js"></script>
 <script>
-  var graph = window.graphite()
+  var graph = window.graphite(...)
   ...
 </script>
 ```
@@ -26,24 +26,25 @@
 ```javascript
 import graphite from '@belov/graphite'
 
-const graph = graphite()
+const graph = graphite(...)
 ...
 ```
 
 # Использование
 
-Для начала работы необходимо вызвать конструктор `graphite()`. В качестве параметров конструктора можно задать имеющиеся исходные данные. Также данные можно обновлять и добавлять после инициализации. (см. [API](#API))
+Для начала работы необходимо вызвать конструктор `graphite(container, options)`. В параметре `options` можно передать имеющиеся исходные данные и настройки. Кроме того, опции можно обновлять и добавлять после инициализации. (см. [API](#API))
 
 ```javascript
-// пустой конструктор
-var emptyGraph = graphite()
+// конструктор без опций
+var container = document.getElementById('container')
+var emptyGraph = graphite(container)
 
 var myGraphData = {
   nodes: [{ from: 1, to: 2 }],
   edges: [{ id: 1 }, { id: 2 }]
 }
-// конструктор с данными
-var prefilledGraph = graphite({data: myGraphData})
+// конструктор с некоторыми заполненными данными
+var prefilledGraph = graphite(container, {data: myGraphData})
 ```
 
 # API
