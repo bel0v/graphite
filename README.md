@@ -40,8 +40,8 @@ var container = document.getElementById('container')
 var emptyGraph = graphite(container)
 
 var myGraphData = {
-  nodes: [{ from: 1, to: 2 }],
-  edges: [{ id: 1 }, { id: 2 }]
+  nodes: [{ id: 1 }, { id: 2 }]
+  edges: [{ from: 1, to: 2 }],
 }
 // конструктор с некоторыми заполненными данными
 var prefilledGraph = graphite(container, {data: myGraphData})
@@ -60,9 +60,9 @@ var prefilledGraph = graphite(container, {data: myGraphData})
 
 ## Общее
 
-`loadFile`
+`loadFile()`
 
-`saveFile`
+`saveFile()`
 
 ## Data
 
@@ -70,17 +70,29 @@ var prefilledGraph = graphite(container, {data: myGraphData})
 
 `edges`
 
-`addNodes`
+`addNodes()`
 
-`updateNode`
+`updateNode()`
 
-`removeNode`
+`removeNode()`
 
-`addEdges`
+`addEdges()`
 
-`updateEdge`
+`updateEdge()`
 
-`removeEdge`
+`removeEdge()`
+
+`nodesGroups`
+
+  -  addGroup(),
+    addGroupMember(),
+    findByName(),
+    list
+    remove(),
+    getGroupMembers()
+
+`edgesGroups`
+ - same
 
 ## Document
 
