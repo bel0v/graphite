@@ -26,7 +26,7 @@
 ```
 
 ```javascript
-import graphite from '@belov/graphite'
+import graphite from '@bel0v/graphite'
 
 const graph = graphite(...)
 ...

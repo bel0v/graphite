@@ -10,6 +10,7 @@ module.exports = {
     libraryExport: 'default',
     libraryTarget: 'var'
   },
+  devtool: 'inline-source-map',
   devServer: {
     publicPath: '/',
     contentBase: path.join(__dirname, '../examples'),

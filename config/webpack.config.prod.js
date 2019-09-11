@@ -9,5 +9,6 @@ module.exports = {
     library: 'graphite',
     libraryExport: 'default',
     libraryTarget: 'var'
-  }
+  },
+  devtool: 'none'
 }
