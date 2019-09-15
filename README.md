@@ -66,7 +66,7 @@ var prefilledGraph = graphite(container, {data: myGraphData})
 
 ## Общее
 
-`loadFile(file: File)` - загрузить XML или HTML файл.
+`loadFile(file: File, options: {immediateRender: Boolean})` - загрузить XML или HTML файл.
 
 `saveFile()` - сохранить XML или HTML файл (пока что работает, только если файл уже был загружен, т.е. с нуля файл не создается)
 
@@ -184,6 +184,9 @@ findById(id).members
 
 `network`
 
+`flushData()` - если при загрузке файла была установлена настройка `{immediateRender: false}`,
+после загрузки и парсинга файла рендеринг не начнётся, пока не будет вызван этот метод.
+
 #### Интерфейс network библиотеки vis.js.
 
 *NB! Для взаимодействий с данными используйте модуль [Data](#Data).*
@@ -194,10 +197,5 @@ findById(id).members
 
 # TODO
 
-- loadFile: добавить опцию immediateRender (bool), чтобы сразу не рендерило
-- ручка, чтобы отрендерить (использовать и снаружи и в immediateRender)
-- механизм для применения групп.
-setActiveGroups: - находим указанные группы. У указанных групп берем все члены и вставляем в фильтр.
-пустой аргумент - удаляем список активных групп (все становится активным)
 - работа с JSON
 - saveFile() для новых файлов

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>File load</title>
+  <script src="graphite.js"></script>
+  <style>
+    body {
+      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .container {
+      border: 1px solid;
+      width: 49%;
+      float: left;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <label>
+      Загрузка с автоматической отрисовкой
+      <input type="file" id='fileInput'></input>
+    </label>
+  </div>
+  <div>
+    <label>
+      Загрузка с ручной отрисовкой
+      <input type="file" id='fileInput2'></input>
+    </label>
+  </div>
+  <button type='button' id='renderGraph2' disabled>
+    Отрисовать граф
+  </button>
+  <br>
+  <br>
+  <div class='container' id='container-1'></div>
+  <div class='container' id='container-2'></div>
+  <script>
+    // 1. Загрузка файла с автоматическим рендером
+    var graphContainer1 = document.getElementById('container-1')
+    var graph = graphite(graphContainer1)
+    var fileInput = document.getElementById('fileInput')
+
+
+    fileInput.addEventListener('change', function(e) {
+      var file = e.target.files[0]
+      graph.loadFile(file).then(function() {
+        /**
+        Файл загружен, данные графа получены.
+        Поскольку был задан контейнер и не задано свойство immediateRender: false,
+        начнётся отрисовка графа.
+        */
+      })
+    })
+
+
+    // 2. Загрузка файла без рендера на канвас.
+    var graphContainer2 = document.getElementById('container-2')
+    var graph2 = graphite(graphContainer2)
+    var renderButton = document.getElementById('renderGraph2')
+    var fileInpu2 = document.getElementById('fileInput2')
+
+    renderButton.addEventListener('click', function(){
+      graph2.view.flushData()
+    })
+
+    fileInput2.addEventListener('change', function(e) {
+      var file = e.target.files[0]
+      graph2.loadFile(file, { immediateRender: false }).then(function() {
+        renderButton.removeAttribute('disabled')
+        // Файл загружен, данные графа получены.
+        // Отрисовка графа не вызовется до тех пор, пока не будет вызван метод
+        // graph2.view.flushData()
+        console.log(graph2.data.nodes) // выведет массив всех узлов
+        console.log(graph2.view.nodes) // выведет пустой массив, так как ничего не рендерим.
+      })
+    })
+</script>
+</body>
+</html>
