@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>File load</title>
+  <script src="graphite.js"></script>
+  <style>
+    body {
+      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .container {
+      border: 1px solid;
+      height: 300px;
+    }
+    .flex {
+      display: flex;
+    }
+    .buttons {
+      margin-left: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class='flex'>
+      <div class='container' id='container-1'></div>
+      <div class='buttons'>
+        <button type='button' id='addNode'>Добавить случайную вершину</button>
+        <button type='button' id='addEdge'>Добавить случайное ребро</button>
+      </div>
+  </div>
+  <script>
+    var graphContainer = document.getElementById('container-1')
+    var graph = graphite(graphContainer)
+
+
+    function addNode() {
+      var randomId = Math.random().toString(36).substring(7)
+      graph.data.addNodes([{id: randomId, label: randomId, group: randomId}])
+    }
+    function addEdge() {
+      var nodes = graph.data.nodes
+      var randomNodeFrom = nodes[Math.floor(Math.random()*nodes.length)]
+      var randomNodeTo = nodes[Math.floor(Math.random()*nodes.length)]
+      graph.data.addEdges([{from: randomNodeFrom.id, to: randomNodeTo.id }])
+    }
+    document.getElementById('addNode').addEventListener('click', addNode)
+    document.getElementById('addEdge').addEventListener('click', addEdge)
+</script>
+</body>
+</html>
