@@ -17,5 +17,12 @@
 <body>
   <input type="file" id='fileInput'></input>
   <div id='container'></div>
+  <script>
+    var graph = graphite()
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+      var file = e.target.files[0]
+      graph.loadFile(file).then(function(){console.log('file loaded')})
+    })
+  </script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 # Установка
 Библиотеку можно установить двумя способами:
 
-1) Добавить как внешний `script` в html-документ. Тогда в объекте `window` будет доступен конструктор `graphite()`
+1) Скачать файл библиотеки из директории `dist` и добавить как внешний `<script>` в html-документ. Тогда в объекте `window` будет доступен конструктор `graphite()`
 
 ```html
 <script src="/path/to/script.js"></script>
@@ -22,7 +22,7 @@
 2) Установить модуль через `npm` или `yarn`
 
 ```shell
-> npm install @belov/graphite
+npm install @bel0v/graphite
 ```
 
 ```javascript
@@ -38,8 +38,12 @@ const graph = graphite(...)
 
 ```javascript
 // конструктор без опций
+var emptyGraph = graphite()
+// добавление данных и опций в процессе работы
 var container = document.getElementById('container')
-var emptyGraph = graphite(container)
+emptyGraph.setContainer(container)
+emptyGraph.data.addNodes([{id: 1, label: 'node1'}])
+// ...
 
 var myGraphData = {
   nodes: [{ id: 1 }, { id: 2 }]
@@ -111,7 +115,14 @@ var prefilledGraph = graphite(container, {data: myGraphData})
 
 `removeEdge(id: EdgeId)`
 
-– Данные методы соответствуют методам add, update и remove на структуре данных [vis.DataSet](https://visjs.github.io/vis-data/data/dataset.html).
+– Данные методы соответствуют методам add, update и remove на структуре данных [vis.DataSet](https://visjs.github.io/vis-data/data/dataset.html). Возвращают массив ID измененных данных.
+
+```javascript
+var addedEdgeIds = graph.data.addEdges([
+  { from: 1, to: 2 },
+  { from: 2, to: 3 },
+])
+```
 
 ### Groups
 
@@ -159,22 +170,34 @@ findById(id).members
 
 ## Document
 
+Модуль, содержащий информацию о загруженном или созданном документе.
+
 `doc` - сам документ
 
 `name` - имя документа
 
 `type` - тип документа
 
-## Network
+## View
+
+Модуль, отвечающий за визуализацию данных, содержащихся в **Data**.
+
+`network`
 
 #### Интерфейс network библиотеки vis.js.
 
 *NB! Для взаимодействий с данными используйте модуль [Data](#Data).*
 
-Данный модуль полезен для создания [подписок на события](https://visjs.github.io/vis-network/docs/network/#Events) и иных низкоуровневых взаимодействий с графом. (См. [Network methods](https://visjs.github.io/vis-network/docs/network/#methods) в документации vis.js)
+Данный модуль полезен для создания [подписок на события](https://visjs.github.io/vis-network/docs/network/#Events) и иных низкоуровневых взаимодействий с визуализацией графа. (См. [Network methods](https://visjs.github.io/vis-network/docs/network/#methods) в документации vis.js)
+
 
 
 # TODO
 
+- loadFile: добавить опцию immediateRender (bool), чтобы сразу не рендерило
+- ручка, чтобы отрендерить (использовать и снаружи и в immediateRender)
+- механизм для применения групп.
+setActiveGroups: - находим указанные группы. У указанных групп берем все члены и вставляем в фильтр.
+пустой аргумент - удаляем список активных групп (все становится активным)
 - работа с JSON
 - saveFile() для новых файлов
