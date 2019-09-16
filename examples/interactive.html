@@ -4,37 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Groups</title>
-  <script src="graphite.js"></script>
-  <style>
-    body {
-      line-height: 1.5;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    .container {
-      border: 1px solid;
-      width: 50%;
-      height: 300px;
-    }
-    .flex {
-      display: flex;
-    }
-    .side {
-      margin-left: 2rem;
-    }
-    .node {
-      cursor: pointer;
-    }
-    .node:hover {
-      color: tomato;
-    }
-  </style>
+  <title>Interactive</title>
+  <script src="../dist/graphite.js"></script>
+  <link rel="stylesheet" href="common.css">
 </head>
 <body>
+    <h1>Взаимодействие</h1>
     <p>
         Данный пример демонстрирует возможность пользовательского взаимодействия с отрисованным графом.
       </p>
@@ -43,6 +18,7 @@
         Также при наведении курсора на id ребра, соответствующее ребро выделяется на графе слева.
       </p>
     </p>
+    <hr>
     <br>
   <div class='flex'>
       <div class='container' id='graphContainer'></div>

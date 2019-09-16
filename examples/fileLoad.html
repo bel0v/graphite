@@ -5,25 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>File load</title>
-  <script src="graphite.js"></script>
-  <style>
-    body {
-      line-height: 1.5;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    .container {
-      border: 1px solid;
-      width: 49%;
-      float: left;
-      height: 300px;
-    }
-  </style>
+  <script src="../dist/graphite.js"></script>
+  <link rel="stylesheet" href="common.css">
 </head>
 <body>
+  <h1>Построение графа из HTML или XML файла</h1>
+  <p>Данный пример демонстрирует построение и отрисовку графа на основе загруженного файла.</p>
+  <hr>
+  <br>
   <div>
     <label>
       Загрузка с автоматической отрисовкой
@@ -41,8 +30,10 @@
   </button>
   <br>
   <br>
-  <div class='container' id='container-1'></div>
-  <div class='container' id='container-2'></div>
+  <div class='flex'>
+    <div class='container' id='container-1'></div>
+    <div class='container' id='container-2'></div>
+  </div>
   <script>
     // 1. Загрузка файла с автоматическим рендером
     var graphContainer1 = document.getElementById('container-1')

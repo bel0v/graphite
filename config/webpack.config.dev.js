@@ -13,7 +13,8 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     publicPath: '/',
-    contentBase: path.join(__dirname, '../examples'),
+    openPage: '/examples/index.html',
+    contentBase: [path.join(__dirname, '../')],
     compress: false,
     port: 9000
   }
