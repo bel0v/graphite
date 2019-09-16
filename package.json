@@ -1,14 +1,16 @@
 {
   "name": "@bel0v/graphite",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A library for object model visualization",
   "main": "dist/graphite.js",
+  "unpkg": "dist/graphite.min.js",
   "scripts": {
     "build": "npx webpack --config ./config/webpack.config.prod.js",
     "build:dev": "npx webpack --config ./config/webpack.config.dev.js",
     "start": "npx webpack-dev-server --config ./config/webpack.config.dev.js",
     "test": "jest",
-    "test:w": "jest --watch"
+    "test:w": "jest --watch",
+    "prepublish": "npm run test && npm run build"
   },
   "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags",
   "repository": {

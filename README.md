@@ -9,10 +9,10 @@
 # Установка
 Библиотеку можно установить двумя способами:
 
-1) Скачать файл библиотеки из директории `dist` и добавить как внешний `<script>` в html-документ. Тогда в объекте `window` будет доступен конструктор `graphite()`
+1) Добавить файл библиотеки как внешний `<script>` в html-документ. Тогда в объекте `window` будет доступен конструктор `graphite()`
 
 ```html
-<script src="/path/to/script.js"></script>
+<script src="https://unpkg.com/@bel0v/graphite@latest/dist/graphite.min.js"></script>
 <script>
   var graph = window.graphite(...)
   ...
