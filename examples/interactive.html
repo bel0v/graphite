@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Groups</title>
+  <script src="graphite.js"></script>
+  <style>
+    body {
+      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .container {
+      border: 1px solid;
+      width: 50%;
+      height: 300px;
+    }
+    .flex {
+      display: flex;
+    }
+    .side {
+      margin-left: 2rem;
+    }
+    .node {
+      cursor: pointer;
+    }
+    .node:hover {
+      color: tomato;
+    }
+  </style>
+</head>
+<body>
+    <p>
+        Данный пример демонстрирует возможность пользовательского взаимодействия с отрисованным графом.
+      </p>
+      <p>
+        При клике на вершину, справа отрисовывается её содержание в модели данных; <br>
+        Также при наведении курсора на id ребра, соответствующее ребро выделяется на графе слева.
+      </p>
+    </p>
+    <br>
+  <div class='flex'>
+      <div class='container' id='graphContainer'></div>
+      <div class='side'>
+        <div id='nodeDetails'>
+            Вершина не выбрана
+          </div>
+      </div>
+  </div>
+
+  <!-- элемент template не поддерживается Internet Explorer. -->
+  <template id="detailsTemplate">
+    <div><b>ID: </b><span id="nodeId"></span></div>
+    <div><b>Имя: </b><span id="nodeName"></span></div>
+    <div><b>Рёбра: </b><div id="connectedEdges"></div></div>
+    <div><b>JSON: </b><span id="nodeToJSON"></span></div>
+  </template>
+
+  <script>
+    var data = {
+      nodes: [{
+        id: 1, label: '1', mySuperAttributes: {a: 'a', b: 'b'}},
+        {id: 2, label: '2'},
+        {id: 3, label: '3'},
+        {id: 4, label: '4'}
+      ],
+      edges: [
+        { from: 1,  to: 2},
+        { from: 1,  to: 3},
+        { from: 4,  to: 1},
+      ]
+    }
+    var graph = graphite(graphContainer, {
+      // заполнение изначальными данными
+      data: data,
+      // опции для отрисовки графа. Подробнее: https://visjs.github.io/vis-network/docs/network/
+      network: {
+        interaction: {
+          selectConnectedEdges: false
+        }
+      }
+    })
+
+    graph.view.network.on('click', function(e) {
+      if (e.nodes.length) {
+        var id = e.nodes[0]
+        var node = graph.data.nodes.find(node => node.id === id)
+
+        // заполняем template данными об узле
+        var nodeSettings = document.importNode(detailsTemplate.content, true)
+        var connectedEdges = graph.view.network.getConnectedEdges(node.id)
+        connectedEdges.forEach(edge => {
+          var el = document.createElement('div')
+          el.setAttribute('class', 'node')
+          el.textContent = edge
+          el.addEventListener('mouseover', () => graph.view.network.setSelection({
+            nodes: [node.id],
+            edges: [edge]
+          }))
+          el.addEventListener('mouseout', () => graph.view.network.setSelection({
+            nodes: [node.id],
+          }))
+          nodeSettings.getElementById('connectedEdges').appendChild(el)
+        })
+        nodeSettings.getElementById('nodeId').textContent = node.id
+        nodeSettings.getElementById('nodeName').textContent = node.label
+        nodeSettings.getElementById('nodeToJSON').textContent = JSON.stringify(node)
+        nodeDetails.innerHTML = ''
+        nodeDetails.appendChild(nodeSettings)
+      } else {
+        nodeDetails.innerHTML = 'Вершина не выбрана'
+      }
+    })
+</script>
+</body>
+</html>

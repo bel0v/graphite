@@ -146,7 +146,7 @@ var addedEdgeIds = graph.data.addEdges([
 
 `addGroup(group: Group)` - добавить группу
 
-`addGroupMembers(members: Array)` - добавить членов группы
+`addMembers(members: Array, groupName: String)` - добавить членов группы
 
 `findByName(name: String)` - найти группу по имени
 

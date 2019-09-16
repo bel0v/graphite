@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Groups</title>
+  <script src="graphite.js"></script>
+  <style>
+    body {
+      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .container {
+      border: 1px solid;
+      width: 50%;
+      height: 300px;
+    }
+    .flex {
+      display: flex;
+    }
+    .side {
+      width: 50%;
+      margin-left: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class='flex'>
+      <div class='container' id='graphContainer'></div>
+      <div class='side'>
+        <ol>
+          <li>Добавить случайную вершину: <button type='button' id='addNode'>Добавить</button></li>
+          <li>
+            Создать новую группу и добавить в неё вершины без групп: <button id='addGroupButton'>Добавить</button>
+          </li>
+          <li>
+              Выбрать активную группу:
+              <select id='activeGroupSelector'>
+                <option value='' selected >все</option>
+              </select>
+          </li>
+        </ol>
+      </div>
+
+  <script>
+    var graph = graphite(graphContainer)
+
+    var groupCounter = 1
+
+    function addGroup() {
+      var groupName = `group ${groupCounter}`
+      // регистрируем новую группу
+      var newGroup = graph.data.nodesGroups.addGroup({name: groupName})
+      groupCounter +=1 // используется для генерации имени группы
+
+      // добавляем вершины без группы в новую группу
+      var nodesWithoutGroups = graph.data.nodes
+        .filter(node => !(node.groups && node.groups.length))
+        .map(node => node.id)
+
+      graph.data.nodesGroups.addMembers(nodesWithoutGroups, newGroup.name)
+
+      // добавляем новую группу в html селектор
+      var option = document.createElement("option")
+      option.setAttribute('value', groupName)
+      option.textContent = groupName
+      activeGroupSelector.appendChild(option)
+    }
+    addGroupButton.addEventListener('click', addGroup)
+
+
+    function selectActiveGroup(e) {
+      var selectedGroup = e.target.value
+      if (selectedGroup === '') {
+        graph.view.activeNodesGroups = []
+      } else {
+        graph.view.activeNodesGroups = [selectedGroup]
+      }
+    }
+    activeGroupSelector.addEventListener('change', selectActiveGroup)
+
+
+    function addNode() {
+      var randomId = Math.random().toString(36).substring(7)
+      graph.data.addNodes([{id: randomId, label: randomId}])
+    }
+    document.getElementById('addNode').addEventListener('click', addNode)
+</script>
+</body>
+</html>
